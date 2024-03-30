@@ -64,6 +64,7 @@ fun CountryListScreen(
                     countries = countryListState.countries,
                     onRefreshTap = viewModel::fetchCountries,
                     onCountryRowTap = onCountryRowTap,
+                    onStarLiked = viewModel::favorite
                     // TODO - OPTIONAL: wire up favorite listener
                 )
 

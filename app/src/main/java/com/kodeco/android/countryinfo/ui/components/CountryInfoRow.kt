@@ -34,10 +34,15 @@ import com.kodeco.android.countryinfo.sample.sampleCountry
 fun CountryInfoRow(
     country: Country,
     onTap: () -> Unit,
+    onStarLiked: (Country) -> Unit
 ) {
-    var iconState by remember {
-        mutableStateOf(false)
-    }
+    val color by animateColorAsState(targetValue = if (country.isFavorite) Color.Yellow else Color.Black,
+        label = "Star color"
+    )
+    val startFilling by animateIntAsState(targetValue = if (country.isFavorite) R.drawable.star_filled else R.drawable.star_outline,
+        label = "Start filling"
+    )
+
     Card(
         onClick = onTap,
         modifier = Modifier
@@ -53,18 +58,15 @@ fun CountryInfoRow(
                 Text(text = "Name: ${country.commonName}")
                 Text(text = "Capital: ${country.capital?.firstOrNull() ?: "N/A"}")
             }
-            //todo add animation for spinning + cache
-            val color by animateColorAsState(targetValue = if (iconState) Color.Yellow else Color.Black)
-            val icon by animateIntAsState(targetValue = if (iconState) R.drawable.star_filled else R.drawable.star_outline)
             Image(
-                painter = painterResource(icon),
+                painter = painterResource(id = startFilling),
                 contentDescription = "starIcon",
                 colorFilter = ColorFilter.tint(color),
                 modifier = Modifier
                     .size(30.dp)
                     .padding(end = 5.dp)
                     .clickable {
-                        iconState = !iconState
+                        onStarLiked(country)
                     }
             )
         }
@@ -77,5 +79,6 @@ fun CountryInfoRowPreview() {
     CountryInfoRow(
         country = sampleCountry,
         onTap = {},
+        onStarLiked = {}
     )
 }
