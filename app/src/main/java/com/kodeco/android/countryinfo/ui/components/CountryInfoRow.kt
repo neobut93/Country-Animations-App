@@ -1,6 +1,7 @@
 package com.kodeco.android.countryinfo.ui.components
 
 import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.animateIntAsState
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -22,6 +23,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -42,6 +44,7 @@ fun CountryInfoRow(
     val startFilling by animateIntAsState(targetValue = if (country.isFavorite) R.drawable.star_filled else R.drawable.star_outline,
         label = "Start filling"
     )
+    val starRotation by animateFloatAsState(targetValue = if (country.isFavorite) 360f else 0f)
 
     Card(
         onClick = onTap,
@@ -65,6 +68,9 @@ fun CountryInfoRow(
                 modifier = Modifier
                     .size(30.dp)
                     .padding(end = 5.dp)
+                    .graphicsLayer {
+                        rotationZ = starRotation
+                    }
                     .clickable {
                         onStarLiked(country)
                     }

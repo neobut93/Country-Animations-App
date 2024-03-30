@@ -1,10 +1,23 @@
 package com.kodeco.android.countryinfo.ui.components
 
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.spring
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -21,6 +34,16 @@ fun CountryDetails(
     country: Country,
     modifier: Modifier,
 ) {
+    var isExpanded by remember {
+        mutableStateOf(false)
+    }
+    val flagSize by animateDpAsState(
+        targetValue = if (isExpanded) 300.dp else 150.dp,
+        animationSpec = tween(
+            durationMillis = 300,
+            easing = LinearEasing
+        ), label = "flag size"
+    )
     LazyColumn(modifier = modifier) {
         item { Text(text = "Capital: ${country.mainCapital}") }
         item { Text(text = "Population: ${country.population}") }
@@ -32,8 +55,11 @@ fun CountryDetails(
                     .crossfade(true)
                     .build(),
                 contentDescription = "Flag",
-                contentScale = ContentScale.Fit,
-                modifier = Modifier.border(1.dp, color = MaterialTheme.colorScheme.primary),
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .border(1.dp, color = MaterialTheme.colorScheme.primary)
+                    .clickable { isExpanded = !isExpanded }
+                    .size(flagSize),
             )
         }
     }
