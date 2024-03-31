@@ -19,7 +19,7 @@ fun SplashScreen(
     nextDestination: () -> Unit
 ) {
     LaunchedEffect(key1 = true) {
-        delay(3000)
+        delay(3500)
         nextDestination()
     }
     val splashComposition by rememberLottieComposition(spec = LottieCompositionSpec.RawRes(R.raw.splash_screen_animation))
