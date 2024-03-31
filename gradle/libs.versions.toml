@@ -20,6 +20,7 @@ moshi="1.15.0"
 coil="2.4.0"
 navigation="2.7.4"
 espresso="3.5.1"
+lottie="5.2.0"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -55,6 +56,7 @@ material = { group = "androidx.compose.material", name = "material" }
 navigation = { module = "androidx.navigation:navigation-compose" , version.ref="navigation"}
 coil = { module = "io.coil-kt:coil-compose", version.ref="coil" }
 espresso = { module = "androidx.test.espresso:espresso-core", version.ref="espresso" }
+lottie = {module = "com.airbnb.android:lottie-compose", version.ref="lottie"}
 
 fonts = {  module = "androidx.compose.ui:ui-text-google-fonts", version.ref="fonts" }
 

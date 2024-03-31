@@ -34,7 +34,9 @@ fun Loading() {
         )
         LazyColumn {
             items(20) {
-                Column(modifier = Modifier.padding(all = 8.dp).fillMaxWidth()) {
+                Column(modifier = Modifier
+                    .padding(all = 8.dp)
+                    .fillMaxWidth()) {
                     Box(
                         modifier = Modifier
                             .size(height = 65.dp, width = 500.dp)

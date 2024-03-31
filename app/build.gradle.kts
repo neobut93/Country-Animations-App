@@ -75,6 +75,8 @@ dependencies {
     implementation(libs.retrofit.moshi)
     implementation(libs.retrofit.moshi.converter)
     implementation(libs.coil)
+    implementation (libs.lottie)
+
 
     ksp (libs.moshiCodeGen)
 
