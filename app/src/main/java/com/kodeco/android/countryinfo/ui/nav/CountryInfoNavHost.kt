@@ -61,6 +61,9 @@ fun CountryInfoNavHost(
 
         composable(Screen.Splash.path) {
             SplashScreen(
+                popBackStack = {
+                    navController.popBackStack()
+                },
                 nextDestination = {
                     navController.navigate(Screen.List.path)
                 }

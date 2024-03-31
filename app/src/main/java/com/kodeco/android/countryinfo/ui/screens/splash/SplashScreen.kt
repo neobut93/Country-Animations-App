@@ -16,10 +16,12 @@ import kotlinx.coroutines.delay
 
 @Composable
 fun SplashScreen(
+    popBackStack: () -> Unit,
     nextDestination: () -> Unit
 ) {
     LaunchedEffect(key1 = true) {
         delay(3500)
+        popBackStack()
         nextDestination()
     }
     val splashComposition by rememberLottieComposition(spec = LottieCompositionSpec.RawRes(R.raw.splash_screen_animation))
